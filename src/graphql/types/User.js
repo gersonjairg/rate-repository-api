@@ -7,6 +7,7 @@ export const typeDefs = gql`
   type User {
     id: ID!
     username: String!
+    name: String!
     createdAt: DateTime!
     reviews(first: Int, after: String): ReviewConnection!
     reviewCount: Int!
@@ -15,11 +16,7 @@ export const typeDefs = gql`
 
 const argsSchema = yup.object({
   after: yup.string(),
-  first: yup
-    .number()
-    .min(1)
-    .max(30)
-    .default(30),
+  first: yup.number().min(1).max(30).default(30),
 });
 
 export const resolvers = {
